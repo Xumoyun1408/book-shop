@@ -1,0 +1,142 @@
+{% extends 'index.html' %}
+
+{% block contant %}
+{% load static %} 
+ <!-- Main Content Wrapper Start -->
+        <main class="main-content-wrapper">
+            <!-- Slider area Start -->
+            <section class="homepage-slider mb--11pt5">
+                <div class="element-carousel slick-right-bottom" data-slick-options='{
+                    "slidesToShow": 1, 
+                    "dots": true
+                }'>
+                    <div class="item">
+                        <div class="single-slide d-flex align-items-center bg-image"
+                            data-bg-image="assets/img/slider/slider-bg-01.jpg">
+                            <div class="container">
+                                <div class="row align-items-center no-gutters w-100">
+                                    <div class="col-lg-6 col-md-8">
+                                        <div class="slider-content">
+                                            <div class="slider-content__text mb--95 md-lg--80 mb-md--40 mb-sm--15">
+                                                <h3 class="text-uppercase font-weight-light" data-animation="fadeInUp"
+                                                    data-duration=".3s" data-delay=".3s">AMAZING BOOK!</h3>
+                                                <h1 class="heading__primary mb--40 mb-md--20" data-animation="fadeInUp"
+                                                    data-duration=".3s" data-delay=".3s">A Tale of Two Cities</h1>
+                                                <p class="font-weight-light" data-animation="fadeInUp"
+                                                    data-duration=".3s" data-delay=".3s">Bu kitob dunyodagi eng kop oqilgan kitobdir</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 offset-lg-2 col-md-4">
+                                        <figure class="slider-image d-none d-md-block">
+                                            <img src="{% static 'assets/img/im.png' %}" alt="Slider Image">
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Slider area End -->
+
+
+            <!-- Product Area Start -->
+            <section class="product-area mb--50 mb-xl--40 mb-lg--25 mb-md--30 mb-sm--20 mb-xs--15">
+                <div class="container">
+                    <div class="row mb--42">
+                        <div class="col-lg-5 col-sm-10">
+                            <h2 class="heading__secondary">Kitob</h2>
+                            <p>Kitob —axborotlarni gʻoya, obraz va bilimlarni saqlash hamda tarqatish, ijtimoiy-siyosiy, ilmiy, estetik qarashlarni shakllantirish vositasi; bilimlar targʻiboti va tarbiya quroli; badiiy, ilmiy asar, ijtimoiy adabiyot. </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb--65 mb-md--50">
+                            {% for product in products %}
+                            <div class="payne-product">
+                                <div class="product__inner">
+                                    <div class="product__image">
+                                        <figure class="product__image--holder">
+                                            <img src="{{product.image.url}}" alt="Product">
+                                        </figure>
+                                        <a href="product-details.html" class="product-overlay"></a>
+                                        <div class="product__action">
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="product__info">
+                                        <div class="product__info--left">
+                                            <h3 class="product__title">
+                                                <a href="{% url 'client:batafsil' product.id %}">{{product.name}}</a>
+                                            </h3>
+                                            <div class="product__price">
+                                                <span class="money">{{product.price}}</span>
+                                                <span class="sign">$</span>
+                                            </div>
+                                        </div>
+                                        <div class="product__info--right">
+                                            <span class="product__rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <!-- Product Area End -->
+        </main>
+        <!-- Main Content Wrapper End -->
+
+        <!-- Footer Start-->
+        <footer class="footer bg-color pt--70 pt-xs--60" data-bg-color="#f4f8fa">
+            <div class="container">
+                <div class="row ptb--20">
+                    <div class="col-12 text-center">
+                        <p class="copyright-text">Payne &copy; 2019 all rights reserved</p>
+                        <div class="social space-10">
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social__link">
+                                <i class="fa fa-facebook"></i>
+                                <span class="sr-only">Facebook</span>
+                            </a>
+                            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" class="social__link">
+                                <i class="fa fa-twitter"></i>
+                                <span class="sr-only">Twitter</span>
+                            </a>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="social__link">
+                                <i class="fa fa-linkedin"></i>
+                                <span class="sr-only">Linkedin</span>
+                            </a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social__link">
+                                <i class="fa fa-instagram"></i>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End-->
+
+
+
+ 
+
+        <!-- Global Overlay Start -->
+        <div class="global-overlay"></div>
+        <!-- Global Overlay End -->
+
+        <!-- Scroll To Top Start -->
+        <a class="scroll-to-top" href=""><i class="fa fa-angle-double-up"></i></a>
+        <!-- Scroll To Top End -->
+    </div>
+    <!-- Main Wrapper End -->
+{% endblock contant %}

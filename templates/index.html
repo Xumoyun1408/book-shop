@@ -1,0 +1,165 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Payne - Backpack eCommerce HTML Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'assets/img/icon.png' %}">
+
+    <!-- ************************* CSS Files ************************* -->
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/vendor.css' %}">
+
+    <!-- style css -->
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+</head>
+
+<body>
+
+    <!-- Preloader Start -->
+    <div class="ft-preloader active">
+        <div class="ft-preloader-inner h-100 d-flex align-items-center justify-content-center">
+            <div class="ft-child ft-bounce1"></div>
+            <div class="ft-child ft-bounce2"></div>
+            <div class="ft-child ft-bounce3"></div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+ 
+    <!-- Main Wrapper Start -->
+    <div class="wrapper">
+        <!-- Header Start -->
+        <header class="header header-default site-header header-transparent">
+            <div class="header__outer">
+                <div class="header__inner header--fixed">
+                    <div class="container">
+                        <div class="header__main">
+                            <div class="header__col header__left">
+                                <a href="index.html" class="logo">
+                                    <figure class="logo--normal">
+                                        <img src="{% static 'assets/img/logo/logo.png' %}" alt="Logo">
+                                    </figure>
+                                    <figure class="logo--transparency">
+                                        <img src="{% static 'assets/img/logo/logo.png' %}" alt="Logo">
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="header__col header__center">
+                                <nav class="main-navigation d-none d-lg-block">
+                                    <ul class="mainmenu">
+                                        <li class="mainmenu__item menu-item-has-children position-relative">
+                                            <a href="{% url 'client:products' %}" class="mainmenu__link">Home</a>
+                                        </li>
+                                        <li class="mainmenu__item menu-item-has-children position-static">
+                                            <a href="#" class="mainmenu__link">Shop</a>
+                                            <div class="inner-menu megamenu-holder">
+                                                <ul class="megamenu">
+                                                    <li>
+                                                        <a class="megamenu-title" href="#">Catigories</a>
+                                                        <ul>
+                                                            {% for cat in cotegory %}
+                                                            <li>
+                                                                <a href="{% url 'client:categor' cat.id %}" class="header__sub--menu__link">{{cat.name}}</a>
+                                                            </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="mainmenu__item menu-item-has-children position-relative">
+                                            <a href="#" class="mainmenu__link">Pages</a>
+                                            <div class="inner-menu">
+                                                <ul class="sub-menu">
+                                                    {% if user.is_authenticated %}
+                                                    <li class="header__menu--items mega__menu--items">
+                                                        <a class="header__menu--link" href="{% url 'client:logout' %}">logo ut</a>
+                                                    </li>
+                                                    {% else %}
+                                                    <li class="header__menu--items mega__menu--items">
+                                                        <a class="header__menu--link" href="{% url 'client:login' %}">Log in</a>
+                                                    </li>
+                                                    <li class="header__menu--items mega__menu--items">
+                                                        <a class="header__menu--link" href="{% url 'client:register2' %}">Register</a>
+                                                    </li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="mainmenu__item menu-item-has-children position-relative">
+                                            <a href="#" class="mainmenu__link">Blog</a>
+                                            <div class="inner-menu">
+                                                <ul class="sub-menu">
+                                                    <li class="has-children">
+                                                        {% if user.is_authenticated %}
+                                      
+                                                            {% if user.user_role == 'admin' %}
+                                                            <a class="header__account--btn" href="{% url 'client:dashboard' %}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"  width="26.51" height="23.443" viewBox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg> 
+                                                                <span class="visually-hidden">My Account</span>
+                                                            </a>
+                                                            {% elif user.user_role == 'seller' %}
+                                                            <a class="header__account--btn" href="{% url 'seller:dashboard' %}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"  width="26.51" height="23.443" viewBox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg> 
+                                                                <span class="visually-hidden">My Account</span>
+                                                            </a>
+                                                            {% else %}
+                                                            <a class="header__account--btn" href="{% url 'client:profil' %}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"  width="26.51" height="23.443" viewBox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg> 
+                                                                <span class="visually-hidden">My Account</span>
+                                                            </a>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </li>
+                                        
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="header__col header__right">
+                                <div class="toolbar-item">
+                                    <li class="header__account--items d-md-none">
+                                        <a class="header__account--btn" href="{% url 'client:carts' %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24.526" height="21.82" viewBox="0 0 24.526 21.82">
+                                                <path  d="M12.263,21.82a1.438,1.438,0,0,1-.948-.356c-.991-.866-1.946-1.681-2.789-2.4l0,0a51.865,51.865,0,0,1-6.089-5.715A9.129,9.129,0,0,1,0,7.371,7.666,7.666,0,0,1,1.946,2.135,6.6,6.6,0,0,1,6.852,0a6.169,6.169,0,0,1,3.854,1.33,7.884,7.884,0,0,1,1.558,1.627A7.885,7.885,0,0,1,13.821,1.33,6.169,6.169,0,0,1,17.675,0,6.6,6.6,0,0,1,22.58,2.135a7.665,7.665,0,0,1,1.945,5.235,9.128,9.128,0,0,1-2.432,5.975,51.86,51.86,0,0,1-6.089,5.715c-.844.719-1.8,1.535-2.794,2.4a1.439,1.439,0,0,1-.948.356ZM6.852,1.437A5.174,5.174,0,0,0,3,3.109,6.236,6.236,0,0,0,1.437,7.371a7.681,7.681,0,0,0,2.1,5.059,51.039,51.039,0,0,0,5.915,5.539l0,0c.846.721,1.8,1.538,2.8,2.411,1-.874,1.965-1.693,2.812-2.415a51.052,51.052,0,0,0,5.914-5.538,7.682,7.682,0,0,0,2.1-5.059,6.236,6.236,0,0,0-1.565-4.262,5.174,5.174,0,0,0-3.85-1.672A4.765,4.765,0,0,0,14.7,2.467a6.971,6.971,0,0,0-1.658,1.918.907.907,0,0,1-1.558,0A6.965,6.965,0,0,0,9.826,2.467a4.765,4.765,0,0,0-2.975-1.03Zm0,0" transform="translate(0 0)" fill="currentColor"/>
+                                            </svg>
+                                              
+                                            <span class="items__count wishlist">{{count}}</span> 
+                                        </a>
+                                    </li>
+                                    <li class="header__account--items">
+                                        <a class="header__account--btn minicart__open--btn" href="{% url 'client:carts' %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18.897" height="21.565" viewBox="0 0 18.897 21.565">
+                                                <path  d="M16.84,8.082V6.091a4.725,4.725,0,1,0-9.449,0v4.725a.675.675,0,0,0,1.35,0V9.432h5.4V8.082h-5.4V6.091a3.375,3.375,0,0,1,6.75,0v4.691a.675.675,0,1,0,1.35,0V9.433h3.374V21.581H4.017V9.432H6.041V8.082H2.667V21.641a1.289,1.289,0,0,0,1.289,1.29h16.32a1.289,1.289,0,0,0,1.289-1.29V8.082Z" transform="translate(-2.667 -1.366)" fill="currentColor"/>
+                                            </svg>
+                                            <span class="items__count">{{count}}</span> 
+                                        </a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-sticky-height"></div>
+            </div>
+        </header>
+        <!-- Header End -->
+{% block contant %}
+
+{% endblock contant %}
+</body>
+<!-- jQuery JS -->
+<script src="{% static 'assets/js/vendor.js' %}"></script>
+
+<!-- Main JS -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</html>

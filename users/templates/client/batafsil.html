@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{product.image.url}}" alt="..." /></div>
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bolder">{{product.name}}</h1>
+                <div class="fs-5 mb-5">
+                    <span>Uning narxi : ${{product.price}}</span>
+                </div>
+                <p class="lead">{{product.description}}</p>
+                <div class="d-flex">
+
+
+                    {% if user.user_role == 'client' %}
+                    <form class="d-flex">
+                        <div class="product__variant--list quantity d-flex align-items-center mb-20">
+                            <div class="quantity__box">
+                                <label>
+                                    <input type="number" class="quantity__number quickview__value--number" name="cart"
+                                        type="number" value="1" />
+                                </label>
+                            </div>
+                            <button class="quickview__cart--btn primary__btn" type="submit">Add To Cart</button>
+                        </div>
+                    </form>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
